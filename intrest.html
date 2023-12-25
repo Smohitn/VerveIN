@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerveIN Interest Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles if needed */
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Update Notes -->
+    <!--
+        - Created a light theme website based on the wireframe provided.
+        - Added a form to allow potential customers to show interest in VerveIN.
+        - Used Tailwind CSS for styling to ensure responsiveness and a modern look.
+    -->
+
+    <div class="container mx-auto p-4">
+        <div class="text-center my-10">
+            <h1 class="text-3xl font-bold mb-2">Show Your Interest in VerveIN</h1>
+            <p class="text-lg">Help us demonstrate the demand for our product to investors.</p>
+        </div>
+
+        <div class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow">
+            <form id="interestForm">
+                <div class="mb-4">
+                    <label for="fullName" class="block text-sm font-semibold text-gray-700">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="John Doe" required
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-semibold text-gray-700">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+
+                <div class="mb-6">
+                    <label for="interestLevel" class="block text-sm font-semibold text-gray-700">Interest Level</label>
+                    <select id="interestLevel" name="interestLevel" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option value="">Select an option</option>
+                        <option value="curious">Just Curious</option>
+                        <option value="interested">Interested</option>
+                        <option value="very_interested">Very Interested</option>
+                    </select>
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Submit Interest
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#interestForm').on('submit', function (e) {
+                e.preventDefault();
+                // Here you would typically handle the form submission, e.g., send data to a server
+                alert('Thank you for showing your interest in VerveIN!');
+            });
+        });
+    </script>
+
+     <!-- intrest.html -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function submitInterest() {
+        var name = $('#name').val();
+        var email = $('#email').val();
+
+        // Send the data to the server
+        $.ajax({
+            type: 'POST',
+            url: '/submit-interest', // Update with the correct endpoint
+            contentType: 'application/json',
+            data: JSON.stringify({ name: name, email: email }),
+            success: function(data) {
+                if (data.success) {
+                    alert('Interest submitted successfully!');
+                } else {
+                    alert('Failed to submit interest. Please try again.');
+                }
+            },
+            error: function() {
+                console.error('Error submitting interest.');
+                alert('An error occurred. Please try again later.');
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
